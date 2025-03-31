@@ -22,7 +22,7 @@ jobs:
      run: echo "Now being Deployed Using GitHub Actions"
 
    - name: Upload Artifact 
-     uses: actions/deploy-pages-artifact@v4
+     uses: actions/upload-pages-artifact@v4
      with:  
       path: .
 
