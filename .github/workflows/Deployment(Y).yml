@@ -23,14 +23,21 @@ jobs:
       - name: Display Deployment Message
         run: echo "Now being Deployed Using GitHub Actions"
 
-      - name: Create or Update index.html with Message
+      - name: Append Deployment Message to README.md
         run: |
-          mkdir -p ./build
-          echo "<html><body><h1>Now being Deployed Using GitHub Actions</h1><p>This is a custom message output from the workflow.</p></body></html>" > ./build/index.html
+          echo -e "\n# Deployment Message\nNow being Deployed Using GitHub Actions" >> README.md
 
-      - name: Display Contents of Build Directory
+      - name: Display Contents of README.md
         run: |
-          ls -R ./build
+          cat README.md
+
+      - name: Commit and Push Changes to README.md
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add README.md
+          git commit -m "Update README with deployment message"
+          git push
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -38,7 +45,7 @@ jobs:
       - name: Upload Artifact 
         uses: actions/upload-pages-artifact@v3
         with:  
-          path: ./build
+          path: .
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
