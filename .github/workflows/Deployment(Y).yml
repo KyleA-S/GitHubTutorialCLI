@@ -25,8 +25,12 @@ jobs:
 
       - name: Create or Update index.html with Message
         run: |
-          mkdir -p ./build  
+          mkdir -p ./build
           echo "<html><body><h1>Now being Deployed Using GitHub Actions</h1><p>This is a custom message output from the workflow.</p></body></html>" > ./build/index.html
+
+      - name: Display Contents of Build Directory
+        run: |
+          ls -R ./build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -34,7 +38,7 @@ jobs:
       - name: Upload Artifact 
         uses: actions/upload-pages-artifact@v3
         with:  
-          path: ./build 
+          path: ./build
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
