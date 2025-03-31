@@ -3,7 +3,8 @@ name: Deploy Website
 on: 
   push: 
     branches: 
-      [main] 
+      - main
+      
 
 permissions: 
   contents: read 
@@ -13,6 +14,8 @@ permissions:
 jobs: 
   projectdeploy: 
     runs-on: ubuntu-latest 
+    environment: 
+      name: github-pages 
 
     steps: 
       - name: Checkout Repository 
